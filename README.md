@@ -1,5 +1,6 @@
 ## Library_Management_System
-
+## Problem Statement 
+Design and implement an object-oriented backend model that represents books, members, librarians, and transactions as first-class entities; enforces business rules (availability checks, borrowing limits, fine calculation) consistently through a single service layer; and is verifiable through automated unit tests rather than manual inspection alone.
 # FEATURES
 1. Book catalogue — add, remove, and search books by title or author (case-insensitive)
 2. Member registration — with duplicate-ID protection
@@ -11,38 +12,64 @@
 
 # PROJECT STRUCTURE
 
-library-management-system/
-├── pom.xml
-├── README.md
-├── src/
-│   ├── main/java/com/library/
-│   │   ├── Main.java                        
-│   │   ├── model/
-│   │   │   ├── Person.java                   
-│   │   │   ├── Member.java                   
-│   │   │   ├── Librarian.java                
-│   │   │   ├── Book.java                     
-│   │   │   ├── Reservable.java               
-│   │   │   └── Transaction.java                
-│   │   ├── service/
-│   │   │   ├── Searchable.java               
-│   │   │   └── LibraryService.java             
-│   │   └── exception/
-│   │       ├── BookNotFoundException.java
-│   │       ├── MemberNotFoundException.java
-│   │       ├── BookNotAvailableException.java
-│   │       ├── BorrowingLimitExceededException.java
-│   │       └── DuplicateMemberException.java
-│   └── test/java/com/library/
-│       ├── model/BookTest.java
-│       └── service/LibraryServiceTest.java
+* library-management-system/
+   * pom.xml
+   * README.md
+   * src/main/java/com/library/
+      * Main.java — console demo, runs the full flow once
+         * Person.java — abstract base (id, name, email)
+         * Member.java — extends Person
+         * Librarian.java — extends Person
+         * Book.java — implements Reservable, Comparable
+         * Reservable.java — interface: hold / release / isAvailable
+         * Transaction.java — issue/return log entry
+      * service/
+         * Searchable.java — generic search interface
+         * LibraryService.java — all business logic lives here
+         * BookNotFoundException.java
+     * exception/
+         * MemberNotFoundException.java
+         * BookNotAvailableException.java
+         * BorrowingLimitExceededException.java
+         * DuplicateMemberException.java
+  * src/test/java/com/library/
+        * model/BookTest.java
+        * service/LibraryServiceTest.java
+
+
+## OOP Concepts Demonstrated
+| Concept | Where |
+|:---|:---|
+| **Abstraction** | `Person` is an abstract class; `Reservable` and `Searchable<T>` are interfaces |
+| **Inheritance** | `Member` and `Librarian` both extend `Person` |
+| **Polymorphism** | `getRole()` is overridden differently in each subclass |
+| **Encapsulation** | `Book`'s copy counts can only change via `hold()` / `release()` — never set directly |
+| **Generics** | `Searchable<T>` isn't hardcoded to `Book` |
+| **Exception Handling** | 5 custom checked exceptions force callers to handle failure explicitly |
+
+ # Technologis used 
+ ## 🛠️ Tech Stack
+
+| Tool | Purpose |
+|:---|:---|
+| Java 17 | Core language, no external runtime dependencies |
+| Maven | Build tool and dependency management |
+| JUnit 5 (Jupiter) | Unit testing |
+ 
 
 ## Future Enhancements
-1. Persist data with a real database (JDBC / Spring Data) instead of in-memory maps
+1. Persist data with a real database  instead of in-memory maps
 2. Add a console menu or REST API on top of LibraryService
 3. Reservation queue for books with zero copies available
 4. Configurable loan period / fine rate per genre or member type
 5. Email/SMS notifications for due-soon and overdue books
+# Test Coverage 
+
+
+| Class | Covers | Tests |
+|:---|:---|:---:|
+| `BookTest` | Copy-count invariants, hold/release, invalid constructor input, equals-by-ISBN | 10 |
+| `LibraryServiceTest` | Issue/return flow, all 4 issue-time exceptions, duplicate member registration, search, transaction log, copy-merging | 13 |
 ## Author
 -Aadarsh Batra 
 -25BAI10872
