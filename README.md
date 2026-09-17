@@ -36,3 +36,15 @@ library-management-system/
 │   └── test/java/com/library/
 │       ├── model/BookTest.java
 │       └── service/LibraryServiceTest.java
+
+## Future Enhancements
+1. Persist data with a real database (JDBC / Spring Data) instead of in-memory maps
+2. Add a console menu or REST API on top of LibraryService
+3. Reservation queue for books with zero copies available
+4. Configurable loan period / fine rate per genre or member type
+5. Email/SMS notifications for due-soon and overdue books
+## Author
+-Aadarsh Batra 
+-25BAI10872
+-B.Tech, Computer Science & Engineering (AI & ML)
+-VIT Bhopal
