@@ -16,17 +16,17 @@ library-management-system/
 ├── README.md
 ├── src/
 │   ├── main/java/com/library/
-│   │   ├── Main.java                          # console demo — runs the full flow once
+│   │   ├── Main.java                        
 │   │   ├── model/
-│   │   │   ├── Person.java                    # abstract base (id, name, email)
-│   │   │   ├── Member.java                    # extends Person
-│   │   │   ├── Librarian.java                 # extends Person
-│   │   │   ├── Book.java                      # implements Reservable, Comparable
-│   │   │   ├── Reservable.java                # interface: hold() / release() / isAvailable()
-│   │   │   └── Transaction.java                # issue/return log entry
+│   │   │   ├── Person.java                   
+│   │   │   ├── Member.java                   
+│   │   │   ├── Librarian.java                
+│   │   │   ├── Book.java                     
+│   │   │   ├── Reservable.java               
+│   │   │   └── Transaction.java                
 │   │   ├── service/
-│   │   │   ├── Searchable.java                # generic search interface
-│   │   │   └── LibraryService.java             # all business logic lives here
+│   │   │   ├── Searchable.java               
+│   │   │   └── LibraryService.java             
 │   │   └── exception/
 │   │       ├── BookNotFoundException.java
 │   │       ├── MemberNotFoundException.java
